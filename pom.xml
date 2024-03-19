@@ -17,9 +17,21 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.sqlserver</groupId>-->
+<!--			<artifactId>sqljdbc4</artifactId>-->
+<!--			<version>4.0</version>-->
+<!--		</dependency>-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.6.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
