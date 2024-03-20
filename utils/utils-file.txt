@@ -18,5 +18,55 @@ jdbc.url = jdbc:jtds:sqlserver://localhost:1433;databasename=YourDB;encrypt=true
 #error with Entitymanager :
 			mean there are an error in entity like no id as primary key in table in my case
 #ssl: this appear with jdk version later on version 8
+How do I re-enable TLS1.0 and TLS1.1 in JDK distributions other than Corretto?
+The good news is that re-enabling these versions is straightforward. 
+First, locate your java.security configuration file located in the jre/lib/security folder for OpenJDK 8 or conf/security for OpenJDK 11 and higher. 
+If you are unfamiliar with this file, you can take a look at the current version in Corretto 11 on GitHub. From here are two options.
+
+Option 1 (preferred): First, ensure the security.overridePropertiesFile value in the java.security file is set to true (this is usually the default value). 
+Then, take the following steps:
+
+Create a file named enableLegacyTLS.security.
+In that file, add an entry for jdk.tls.disabledAlgorithms with the same contents as the jdk.tls.disabledAlgorithms property in the java.security file.
+Remove TLSv1 and/or TLSv1.1 from the list on the enableLegacyTLS.security. (You can see this line in the Corretto GitHub).
+Start your application with -Djava.security.properties=path/to/enableLegacyTLS.security.
+Alternatively, you can edit this value in the java.security file directly. Search for the property jdk.tls.disabledAlgorithms. 
+For OpenJDK 11, its contents will be similar to:
+
+jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
+ DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
+ include jdk.disabled.namedCurves
+By removing the TLSv1.1 and/or TLSv1 entries (in bold above), you can re-establish those versions back to the list of usable versions within the JDK.
+
+To make your Corretto configuration more restrictive, perform similar steps adding “TLSv1, TLSv1.1″ to the jdk.tls.disabledAlgorithms property
 
 
+STEPS:
+1- ahmedshaltout@devPC:~/.jdks/openjdk-19.0.1/conf/security$ ll
+drwxrwxr-x 3 ahmedshaltout ahmedshaltout  4096 Oct 24  2022 ./
+drwxrwxr-x 5 ahmedshaltout ahmedshaltout  4096 Oct 24  2022 ../
+-rw-r--r-- 1 ahmedshaltout ahmedshaltout  2294 Oct 24  2022 java.policy
+-rw-r--r-- 1 ahmedshaltout ahmedshaltout 59584 Oct 24  2022 java.security
+drwxrwxr-x 4 ahmedshaltout ahmedshaltout  4096 Oct 24  2022 policy/
+
+ahmedshaltout@devPC:~/.jdks/openjdk-19.0.1/conf/security$ sudo gedit java.security
+
+ahmedshaltout@devPC:~/.jdks/openjdk-19.0.1/conf/security$ touch enableLegacyTLS.security
+ahmedshaltout@devPC:~/.jdks/openjdk-19.0.1/conf/security$ sudo gedit enableLegacyTLS.security 
+jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
+    DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL
+
+ahmedshaltout@devPC:~/.jdks/openjdk-19.0.1/conf/security$ ll
+total 80
+drwxrwxr-x 3 ahmedshaltout ahmedshaltout  4096 Mar 20 10:02 ./
+drwxrwxr-x 5 ahmedshaltout ahmedshaltout  4096 Oct 24  2022 ../
+-rw-rw-r-- 1 ahmedshaltout ahmedshaltout   124 Mar 20 10:02 enableLegacyTLS.security
+-rw-r--r-- 1 ahmedshaltout ahmedshaltout  2294 Oct 24  2022 java.policy
+-rw-r--r-- 1 ahmedshaltout ahmedshaltout 59584 Oct 24  2022 java.security
+drwxrwxr-x 4 ahmedshaltout ahmedshaltout  4096 Oct 24  2022 policy/
+
+
+change 
+~/.jdks/openjdk-19.0.1/conf/security/enableLegacyTLS.security (starting path) edited in java.security
+
+-Djava.security.properties=~/.jdks/openjdk-19.0.1/conf/security/enableLegacyTLS.security
