@@ -13,3 +13,10 @@ And a config properties file like:
 
 jdbc.driverClassName = net.sourceforge.jtds.jdbc.Driver
 jdbc.url = jdbc:jtds:sqlserver://localhost:1433;databasename=YourDB;encrypt=true;trustserverCertificate=true
+
+###
+#error with Entitymanager :
+			mean there are an error in entity like no id as primary key in table in my case
+#ssl: this appear with jdk version later on version 8
+
+
