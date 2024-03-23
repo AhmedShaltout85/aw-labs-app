@@ -11,4 +11,5 @@ public interface ITrackingPointService {
     ResponseEntity<TrackingPointDto> findById(Long id);
     ResponseEntity<TrackingPointEntity> findByBreakId(int breakId);
     ResponseEntity<TrackingPointEntity> findByBreakIdAndLabCode(int breakId, int labCode);
+    ResponseEntity<TrackingPointDto> findByLabCode(int labCode);
 }

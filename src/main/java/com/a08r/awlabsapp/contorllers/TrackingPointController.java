@@ -43,6 +43,11 @@ public class TrackingPointController {
 
         return this.iTrackingPointService.findByBreakId(breakId);
     }
+  @GetMapping(path ="/l/{labCode}" )
+    public ResponseEntity<TrackingPointDto> findByLabCode(@PathVariable int labCode){
+
+        return this.iTrackingPointService.findByLabCode(labCode);
+    }
 
 
 }

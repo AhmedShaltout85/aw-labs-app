@@ -70,3 +70,37 @@ change
 ~/.jdks/openjdk-19.0.1/conf/security/enableLegacyTLS.security (starting path) edited in java.security
 
 -Djava.security.properties=~/.jdks/openjdk-19.0.1/conf/security/enableLegacyTLS.security
+
+or remove from java.security TLS1.0 and TLS1.1 ssl3
+
+then use in app path
+mvn install:install-file -Dfile=sqljdbc4-3.0.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar
+
+
+error message in sql server Login failed for user 'NT AUTHORITY\SYSTEM'. Reason: Failed to open the explicitly specified database. [CLIENT: <local machine>]
+ChatGPT
+The error message "Login failed for user 'NT AUTHORITY\SYSTEM'. Reason: Failed to open the explicitly specified database." indicates that the SQL Server login attempt made by the NT AUTHORITY\SYSTEM user failed because it couldn't open the specified database.
+
+Here are a few steps to troubleshoot and potentially resolve this issue:
+
+Check SQL Server Login Credentials: Ensure that the NT AUTHORITY\SYSTEM user has appropriate permissions to access the specified database. You might need to check the security settings and roles assigned to this user in SQL Server Management Studio (SSMS).
+
+Verify Database Existence: Double-check that the specified database exists on the SQL Server instance. If the database doesn't exist or if its name is misspelled, you'll encounter this error.
+
+Check Database Permissions: Make sure that the NT AUTHORITY\SYSTEM user has sufficient permissions on the specified database. In SSMS, you can check the user's permissions by navigating to the Security section of the database, right-clicking the user, and selecting Properties.
+
+Authentication Mode: Ensure that SQL Server authentication is enabled and configured properly if you're using SQL Server authentication for NT AUTHORITY\SYSTEM user login. If you're using Windows Authentication, ensure that the user is correctly authenticated by the Windows domain.
+
+Check SQL Server Logs: Inspect the SQL Server error logs for more detailed error messages. The error logs might provide additional information about why the login attempt failed.
+
+Network Configuration: If you're accessing SQL Server from a remote machine, verify that remote connections are enabled on the SQL Server instance and that there are no firewall or network configuration issues preventing access.
+
+Try Different Authentication: If possible, try connecting to SQL Server using a different user account to see if the issue is specific to the NT AUTHORITY\SYSTEM user or a more general problem with SQL Server authentication or database access.
+
+Restart SQL Server Service: Sometimes, restarting the SQL Server service can resolve temporary connectivity issues. However, this should be done cautiously, especially in a production environment.
+
+By following these steps and investigating further based on the specific details of your SQL Server environment, you should be able to identify and resolve the login failure issue for the NT AUTHORITY\SYSTEM user.
+
+
+
+

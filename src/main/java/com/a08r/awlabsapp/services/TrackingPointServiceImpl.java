@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +40,7 @@ public class TrackingPointServiceImpl implements ITrackingPointService {
     @Override
     public ResponseEntity<TrackingPointDto> findById(Long id) {
         Optional<TrackingPointEntity> trackingPointEntity = this.iTrackingPointRepository.findById(id);
-        if (trackingPointEntity.isEmpty()) {
+        if (trackingPointEntity==null) {
             throw new RecordNotFoundException("the item with id: " + id + " not found!....");
         }
         TrackingPointDto trackingPointDto = TRACKING_POINT_MAPPER.trackingPointEntityTotrackingPointDto(trackingPointEntity.get());
@@ -63,5 +64,12 @@ public class TrackingPointServiceImpl implements ITrackingPointService {
             throw new RecordNotFoundException("Sorry, The Break with break_id and Lab_code : " + breakId + " AND " + labCode + " not found!...");
         }
         return new ResponseEntity<>(trackingPointElement, HttpStatus.OK);
+    }
+
+
+    @Override
+    public ResponseEntity<TrackingPointDto> findByLabCode(int labCode) {
+        TrackingPointDto trackingPointEntity = iTrackingPointRepository.findByLabCode(labCode);
+        return new ResponseEntity<>(trackingPointEntity, HttpStatus.OK);
     }
 }

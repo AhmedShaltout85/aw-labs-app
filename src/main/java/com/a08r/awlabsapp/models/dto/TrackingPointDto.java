@@ -1,6 +1,5 @@
 package com.a08r.awlabsapp.models.dto;
 
-import jakarta.persistence.Column;
 import lombok.*;
 
 @Setter

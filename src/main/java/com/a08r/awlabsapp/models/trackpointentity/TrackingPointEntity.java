@@ -1,11 +1,12 @@
 package com.a08r.awlabsapp.models.trackpointentity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.TimerTask;
+
+
+
 
 @Entity
 @Table(name = "Track_break_locations")
@@ -38,3 +39,4 @@ public class TrackingPointEntity {
     private double locationY;
 
 }
+

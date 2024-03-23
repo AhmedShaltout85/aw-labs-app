@@ -5,8 +5,11 @@ import com.a08r.awlabsapp.models.trackpointentity.TrackingPointEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ITrackingPointRepository extends JpaRepository<TrackingPointEntity,Long> {
      TrackingPointEntity findByBreakIdAndLabCode(int breakId, int labCode);
      TrackingPointEntity findByBreakId(int breakId);
+     TrackingPointDto findByLabCode(int labCode);
 }
