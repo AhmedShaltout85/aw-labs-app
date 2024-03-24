@@ -9,7 +9,7 @@ import java.util.List;
 public interface ITrackingPointService {
     ResponseEntity<List<TrackingPointDto>> findAll();
     ResponseEntity<TrackingPointDto> findById(Long id);
-    ResponseEntity<List<TrackingPointEntity>> findByBreakId(int breakId);
-    ResponseEntity<List<TrackingPointEntity>> findByBreakIdAndLabCode(int breakId, int labCode);
+    ResponseEntity<List<TrackingPointDto>> findByBreakId(int breakId);
+    ResponseEntity<List<TrackingPointDto>> findByBreakIdAndLabCode(int breakId, int labCode);
     ResponseEntity<List<TrackingPointDto>> findByLabCode(int labCode);
 }

@@ -49,27 +49,42 @@ public class TrackingPointServiceImpl implements ITrackingPointService {
     }
 
     @Override
-    public ResponseEntity<List<TrackingPointEntity>> findByBreakId(int breakId) {
+    public ResponseEntity<List<TrackingPointDto>> findByBreakId(int breakId) {
         List<TrackingPointEntity> trackingPointElement = iTrackingPointRepository.findByBreakId(breakId);
-        if (trackingPointElement == null) {
+        List<TrackingPointDto> trackingPointDtoList = trackingPointElement
+                .stream()
+                .map(TRACKING_POINT_MAPPER::trackingPointEntityTotrackingPointDto)
+                .collect(Collectors.toList());
+        if (trackingPointDtoList.isEmpty()) {
             throw new RecordNotFoundException("Sorry, The Break with Break_id: " + breakId  + " not found!...");
         }
-        return new ResponseEntity<>(trackingPointElement, HttpStatus.OK);
+        return new ResponseEntity<>(trackingPointDtoList, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<List<TrackingPointEntity>> findByBreakIdAndLabCode(int breakId, int labCode) {
+    public ResponseEntity<List<TrackingPointDto>> findByBreakIdAndLabCode(int breakId, int labCode) {
         List<TrackingPointEntity> trackingPointElement = iTrackingPointRepository.findByBreakIdAndLabCode(breakId, labCode);
-        if (trackingPointElement == null) {
+        List<TrackingPointDto> trackingPointDtoList = trackingPointElement
+                .stream()
+                .map(TRACKING_POINT_MAPPER::trackingPointEntityTotrackingPointDto)
+                .collect(Collectors.toList());
+        if (trackingPointDtoList.isEmpty()) {
             throw new RecordNotFoundException("Sorry, The Break with break_id and Lab_code : " + breakId + " AND " + labCode + " not found!...");
         }
-        return new ResponseEntity<>(trackingPointElement, HttpStatus.OK);
+        return new ResponseEntity<>(trackingPointDtoList, HttpStatus.OK);
     }
 
 
     @Override
     public ResponseEntity<List<TrackingPointDto>> findByLabCode(int labCode) {
-        List<TrackingPointDto> trackingPointEntity = iTrackingPointRepository.findByLabCode(labCode);
-        return new ResponseEntity<>(trackingPointEntity, HttpStatus.OK);
+        List<TrackingPointEntity> trackingPointEntity = iTrackingPointRepository.findByLabCode(labCode);
+        List<TrackingPointDto> trackingPointDtoList = trackingPointEntity
+                .stream()
+                .map(TRACKING_POINT_MAPPER::trackingPointEntityTotrackingPointDto)
+                .collect(Collectors.toList());
+        if (trackingPointDtoList.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, The Break with LAB-CODE and Lab_code : " + labCode +" not found!...");
+        }
+        return new ResponseEntity<>(trackingPointDtoList, HttpStatus.OK);
     }
 }

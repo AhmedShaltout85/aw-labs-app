@@ -3,7 +3,9 @@ package com.a08r.awlabsapp.repositores;
 import com.a08r.awlabsapp.models.dto.TrackingPointDto;
 import com.a08r.awlabsapp.models.trackpointentity.TrackingPointEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,5 +15,5 @@ public interface ITrackingPointRepository extends JpaRepository<TrackingPointEnt
 
     List<TrackingPointEntity> findByBreakId(int breakId);
 
-    List<TrackingPointDto> findByLabCode(int labCode);
+    List<TrackingPointEntity> findByLabCode(int labCode);
 }
