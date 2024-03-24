@@ -49,8 +49,8 @@ public class TrackingPointServiceImpl implements ITrackingPointService {
     }
 
     @Override
-    public ResponseEntity<TrackingPointEntity> findByBreakId(int breakId) {
-        TrackingPointEntity trackingPointElement = iTrackingPointRepository.findByBreakId(breakId);
+    public ResponseEntity<List<TrackingPointEntity>> findByBreakId(int breakId) {
+        List<TrackingPointEntity> trackingPointElement = iTrackingPointRepository.findByBreakId(breakId);
         if (trackingPointElement == null) {
             throw new RecordNotFoundException("Sorry, The Break with Break_id: " + breakId  + " not found!...");
         }
@@ -58,8 +58,8 @@ public class TrackingPointServiceImpl implements ITrackingPointService {
     }
 
     @Override
-    public ResponseEntity<TrackingPointEntity> findByBreakIdAndLabCode(int breakId, int labCode) {
-        TrackingPointEntity trackingPointElement = iTrackingPointRepository.findByBreakIdAndLabCode(breakId, labCode);
+    public ResponseEntity<List<TrackingPointEntity>> findByBreakIdAndLabCode(int breakId, int labCode) {
+        List<TrackingPointEntity> trackingPointElement = iTrackingPointRepository.findByBreakIdAndLabCode(breakId, labCode);
         if (trackingPointElement == null) {
             throw new RecordNotFoundException("Sorry, The Break with break_id and Lab_code : " + breakId + " AND " + labCode + " not found!...");
         }
@@ -68,8 +68,8 @@ public class TrackingPointServiceImpl implements ITrackingPointService {
 
 
     @Override
-    public ResponseEntity<TrackingPointDto> findByLabCode(int labCode) {
-        TrackingPointDto trackingPointEntity = iTrackingPointRepository.findByLabCode(labCode);
+    public ResponseEntity<List<TrackingPointDto>> findByLabCode(int labCode) {
+        List<TrackingPointDto> trackingPointEntity = iTrackingPointRepository.findByLabCode(labCode);
         return new ResponseEntity<>(trackingPointEntity, HttpStatus.OK);
     }
 }

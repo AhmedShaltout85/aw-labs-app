@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ITrackingPointRepository extends JpaRepository<TrackingPointEntity,Long> {
-     TrackingPointEntity findByBreakIdAndLabCode(int breakId, int labCode);
-     TrackingPointEntity findByBreakId(int breakId);
-     TrackingPointDto findByLabCode(int labCode);
+public interface ITrackingPointRepository extends JpaRepository<TrackingPointEntity, Long> {
+    List<TrackingPointEntity> findByBreakIdAndLabCode(int breakId, int labCode);
+
+    List<TrackingPointEntity> findByBreakId(int breakId);
+
+    List<TrackingPointDto> findByLabCode(int labCode);
 }

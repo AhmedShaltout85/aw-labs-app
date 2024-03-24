@@ -34,17 +34,17 @@ public class TrackingPointController {
     }
 
     @GetMapping(path ="/bl/{breakId}/{labCode}" )
-    public ResponseEntity<TrackingPointEntity> findByBreakIdAndLabCode(@PathVariable int breakId, @PathVariable int labCode){
+    public ResponseEntity<List<TrackingPointEntity>> findByBreakIdAndLabCode(@PathVariable int breakId, @PathVariable int labCode){
 
         return this.iTrackingPointService.findByBreakIdAndLabCode(breakId,labCode);
     }
     @GetMapping(path ="/b/{breakId}" )
-    public ResponseEntity<TrackingPointEntity> findByBreakId(@PathVariable int breakId){
+    public ResponseEntity<List<TrackingPointEntity>> findByBreakId(@PathVariable int breakId){
 
         return this.iTrackingPointService.findByBreakId(breakId);
     }
   @GetMapping(path ="/l/{labCode}" )
-    public ResponseEntity<TrackingPointDto> findByLabCode(@PathVariable int labCode){
+    public ResponseEntity<List<TrackingPointDto>> findByLabCode(@PathVariable int labCode){
 
         return this.iTrackingPointService.findByLabCode(labCode);
     }
