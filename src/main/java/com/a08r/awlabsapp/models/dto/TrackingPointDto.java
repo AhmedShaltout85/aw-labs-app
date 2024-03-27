@@ -1,5 +1,6 @@
 package com.a08r.awlabsapp.models.dto;
 
+
 import lombok.*;
 
 @Setter
@@ -19,3 +20,12 @@ public class TrackingPointDto {
     private double locationX;
     private double locationY;
 }
+
+// we can use DTO class in this way
+//public class TrackingPointDTO{
+//    private final TrackingPointEntity ;
+//
+//    public TrackingPointDTO(TrackingPointEntity trackingPointEntity) {
+//        this.trackingPointEntity = trackingPointEntity;
+//    }
+//}

@@ -101,6 +101,40 @@ Restart SQL Server Service: Sometimes, restarting the SQL Server service can res
 
 By following these steps and investigating further based on the specific details of your SQL Server environment, you should be able to identify and resolve the login failure issue for the NT AUTHORITY\SYSTEM user.
 
+###
+url:
+get:ALL
+
+http://localhost:8888/awco/api/v1/break-info
+
+get:BY-LAB-code
+
+http://localhost:8888/awco/api/v1/break-info/l/10
+
+get:BY-BREAK-id
+http://localhost:8888/awco/api/v1/break-info/b/0
+
+get:BY-BREAK-id_LAB-code
+http://localhost:8888/awco/api/v1/break-info/bl/0/9
 
 
 
+to deploy war :->(MUST)
+1-setup jdk in host server with the same version of war package number
+
+ $ update-alternatives --list java
+/usr/bin/gij-5
+/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+to find java.security file to remove ssl
+
+
+@SpringBootApplication
+public class AwLabsAppApplication extends SpringServletContainerInitializer {
+
+
+	public static void main(String[] args) {
+
+		SpringApplication.run(AwLabsAppApplication.class, args);
+	}
+
+}

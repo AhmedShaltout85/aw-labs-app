@@ -12,9 +12,10 @@
     <artifactId>aw-labs-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>aw-labs-app</name>
+    <packaging>war</packaging>
     <description>aw-labs-app project for Spring Boot RESTful API</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
 
@@ -33,6 +34,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>com.mysql</groupId>
