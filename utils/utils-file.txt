@@ -138,3 +138,17 @@ public class AwLabsAppApplication extends SpringServletContainerInitializer {
 	}
 
 }
+
+2-install mvn combatable with jdk version
+
+3- run:
+mv to app folder:
+
+mvn clean
+mvn install 
+mvn spring-boot:run (act like tomcat deploy)
+or 
+java -jar app.jar || app.war (act like tomcat deploy)
+
+4- must define "/app-name" as context-path in app.properties file. 
+
