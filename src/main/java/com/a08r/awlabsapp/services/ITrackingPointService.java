@@ -1,7 +1,6 @@
 package com.a08r.awlabsapp.services;
 
 import com.a08r.awlabsapp.models.dto.TrackingPointDto;
-import com.a08r.awlabsapp.models.trackpointentity.TrackingPointEntity;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

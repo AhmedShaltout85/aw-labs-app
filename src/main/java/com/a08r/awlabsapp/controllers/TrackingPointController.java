@@ -1,7 +1,6 @@
-package com.a08r.awlabsapp.contorllers;
+package com.a08r.awlabsapp.controllers;
 
 import com.a08r.awlabsapp.models.dto.TrackingPointDto;
-import com.a08r.awlabsapp.models.trackpointentity.TrackingPointEntity;
 import com.a08r.awlabsapp.services.ITrackingPointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +37,7 @@ public class TrackingPointController {
 
         return this.iTrackingPointService.findByBreakIdAndLabCode(breakId,labCode);
     }
+
     @GetMapping(path ="/b/{breakId}" )
     public ResponseEntity<List<TrackingPointDto>> findByBreakId(@PathVariable int breakId){
 
